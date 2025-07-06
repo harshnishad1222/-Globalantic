@@ -3,7 +3,7 @@ services:
     name: crafted-web-frontend
     env: node
     plan: free
-    buildCommand: npm install && npm run build
+    buildCommand: rm -rf node_modules package-lock.json && npm install && npm run build
     startCommand: npm run preview
     healthCheckPath: /
     envVars:
@@ -11,3 +11,7 @@ services:
         value: production
       - key: VITE_API_URL
         value: https://your-api-url.com
+      - key: NPM_CONFIG_PLATFORM
+        value: linux
+      - key: NPM_CONFIG_TARGET_ARCH
+        value: x64
